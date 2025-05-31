@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>OpenPlaza | Il Marketplace che parla crypto</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="top-bar">
+
+            <div class="header-left">
+                <h1>OpenPlaza</h1>
+
+                {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Esci</button>
+                    </form>
+                {% endif %}
+
+            </div>
+
+            <div class="header-center">
+                <!-- aggiungere una barra di ricerca -->
+            </div>
+
+            <div class="header-right">
+                <div class="image_icon_top_bar">
+                    <a href="{% url 'login' %}">
+                        <img src="{% static 'images/default_user_silhouette.avif' %}" alt="Profilo">
+                    </a>
+                </div>
+
+                <div class="image_icon_top_bar">
+                    <img src="{% static 'images/cart_default.png' %}" alt="Carrello">
+                </div>
+            </div>
+
+            <!--
+            <div class="right">
+                {% if user.is_authenticated %}
+
+                <p>Benvenuto, {{ user.username }} </p>
+
+                <a href="{% url 'create_product' %}">Vendi</a>
+
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Esci</button>
+                </form>
+
+                {% else %}
+                    <a href="{% url 'login' %}">Accedi</a>
+                    <a href="{% url 'register' %}">Registrati</a>
+                {% endif %}
+            </div>
+            -->
+
+        </div>
+
+        <h2>Compra e vendi in libertà con le criptovalute.</h2><br>
+
+        <h1>Prodotti disponibili</h1>
+
+        <ul class="product-horizontal-list">
+            {% for product in products %}
+            <li class="product-card">
+                <a href="{% url 'product_detail' product.id %}">
+                    <div class="image_wrapper">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200">
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.price }} €</p>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!--
+        <ul>
+            {% for article in articles %}
+                <li>
+                    <strong>{{ article.title }}</strong> - €{{ article.price }} <br>
+                    {{ article.description|linebreaks }} <br>
+                    Venduto da: {{ article.seller.username }}
+                </li>
+            {% empty %}
+                <li>Nessun prodotto disponibile.</li>
+            {% endfor %}
+        </ul>
+        -->
+    </div>
+</body>
+</html>

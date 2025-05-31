@@ -1,0 +1,155 @@
+body {
+  padding-top: 70px; /* aggiusta questo valore in base all’altezza della barra */
+  margin: 0;
+  font-family: sans-serif;
+  background: #f5f5f5;
+  font-size: 30px;
+  padding-top: 115px; /* aggiusta questo valore in base all’altezza della barra */
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+input, button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+label {
+  margin-top: 1rem;
+  display: block;
+  font-weight: bold;
+}
+
+.top-bar {
+  width: 100%;
+  background-color: #e0e0e0;
+  color: black;
+  font-size: 2rem;
+  align-items: center;
+  position: fixed;   /* rimane in alto anche scrollando */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;        /* abilita flexbox */
+  justify-content: space-between; /* spazio tra titolo e icone */
+  align-items: center; /* centrati verticalmente */
+  box-sizing: border-box; /* <-- Assicura che padding non faccia "sforare" */
+  padding: 0rem 1rem;      /* padding <verticale>rem <orrizzontale>rem */
+}
+
+.header-left {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+.header-left p {
+    margin: 0;
+}
+
+.header-right {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+.left h1 {
+  margin: 0;
+}
+
+.right a {
+  margin-left: 1rem;
+}
+
+.image_icon_top_bar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;           /* lo rende un cerchio */
+  overflow: hidden;             /* in caso l'immagine va oltre il cerchio, viene nascosto il resto */
+  border: 3px solid #999;       /* aggiunge un bordo attorno */
+}
+
+.image_icon_top_bar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                /* mantiene l'immagine ingrandita per tutto il cerchio */
+  object-position: center;          /* centra l'immagine all’interno */
+  display: block;
+}
+
+.product-horizontal-list {
+    display: flex;          /* mette priorità orrizzontale */
+    overflow-x: auto;       /* permette di navigare liberamente sulla lista */
+    list-style: none;       /* elimina i punti */
+    gap: 10px;
+    white-space: nowrap;    /* consigliato farlo(?) */
+}
+
+.product-card {
+  min-width: 220px;       /* larghezza minima di ogni card */
+  max-width: 220px;
+  max-height: 300px;
+  flex-shrink: 0;         /* non ridurre la card */
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.card-content img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;      /* oppure 'cover' se vuoi che riempia tutto */
+  display: block;
+  margin: 0 auto;
+  background-color: #f0f0f0; /* colore neutro se l’immagine non riempie tutto */
+}
+
+.card-content h3 {
+  font-size: 1rem;
+  line-height: 1.2em;
+  word-break: normal;
+  height: 2.4em; /* 1.2em * 2 righe = altezza massima */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;       /* massimo 2 righe */
+  -webkit-box-orient: vertical;
+}
+
+.image-wrapper {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #f9f9f9;
+}
+.image-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}

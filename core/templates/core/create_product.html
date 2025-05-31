@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+	
+	<head>
+		<title>OpenPlaza | Aggiungi il tuo prodotto</title>
+	</head>
+
+	<body>
+
+    <h1>Aggiungi il tuo prodotto</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salva</button>
+    </form>
+
+    <p><a href="{% url 'homepage' %}">Torna alla Home</a></p>
+
+</body>
+
+</html>
