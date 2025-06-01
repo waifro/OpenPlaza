@@ -15,7 +15,7 @@
 				document.getElementById("username-field").style.display = 'none';
 				document.getElementById('password-fields').style.display = 'block';
 				document.getElementById('error_message').style.display = 'none';
-				document.getElementById("username-available").style.display = 'none';
+				document.getElementById('username-available').style.display = 'none';
 			}
 
 			function editUsernameField() {
@@ -39,7 +39,7 @@
 			{% endif %}
 
 			<!-- devo ancora scegliere come mostrare gli errori, al momento lo lasciamo così -->
-			<p id="username-available"></p>
+			<p id="username-available" style="display: block;"></p>
 
 			<form method="post">
 				{% csrf_token %}
@@ -52,7 +52,7 @@
 					<li id="username-checklist3" style="font-style: italic;">Solo lettere, numeri, trattini e underscore</li>
 					<li id="username-checklist2" style="font-style: italic;">Non può contenere spazi</li><br>
 
-					<button id="button-verified" type="button" onclick="showPasswordFields()" disabled>Continua</button>
+					<button id="button-verified" type="button" onclick="showPasswordFields()" disabled>Continua</button><br><br>
 				</div>
 
 				<div id="password-fields" style="display: none;">
@@ -64,7 +64,7 @@
 					<input type="text" id="password1" name="password1" placeholder="Nuova password" required><br><br>
 					<input type="text" id="password2" name="password2" placeholder="Ripeti password" required><br><br>
 
-					<button type="submit">Crea Account</button>
+					<button type="submit">Crea Account</button><br><br>
 				</div>
 
 			</form>

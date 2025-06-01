@@ -31,7 +31,7 @@ body {
     font-family: sans-serif;
 }
 
-.container input, textarea {
+.container input, textarea, button {
     width: 300px;
     height: 30px;
     max-width: 400px;
@@ -40,7 +40,7 @@ body {
     font-size: 1.2rem;
 }
 
-.container input[type="submit"] {
+.container input[type="submit"], button {
     /* adattiamo i pulsanti a larghezza corrisposta */
     width: 150px;
     height: 30px;
@@ -53,9 +53,10 @@ input::placeholder {
 }
 
 .valid {
-    color: green;
+  color: green;
+  list-style-type: '✔ ';
 }
-
 .invalid {
-    color: black;
+  color: red;
+  list-style-type: '✘ ';
 }
