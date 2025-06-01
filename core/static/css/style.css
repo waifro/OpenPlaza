@@ -103,7 +103,7 @@ label {
     overflow-x: auto;       /* permette di navigare liberamente sulla lista */
     list-style: none;       /* elimina i punti */
     gap: 10px;
-    white-space: nowrap;    /* consigliato farlo(?) */
+    height: 600px;
 }
 
 .product-card {

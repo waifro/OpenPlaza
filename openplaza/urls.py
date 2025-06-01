@@ -23,12 +23,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='homepage'),                                              # homepage
-    path("logout/", views.logout_view, name="logout"),                                  # logout
-    path("login/", views.login_view, name="login"),                                     # login
-    path("register/", views.register_view, name="register"),                            # registrazione
-    path("product/create/", views.create_product, name="create_product"),                        # vendi
-    path('product/<int:id>/', views.product_detail, name='product_detail'),             # dettagli prodotto
+    path('', views.home, name='homepage'),                                                                              # homepage
+    path("logout/", views.logout_view, name="logout"),                                                                  # logout
+    path("login/", views.login_view, name="login"),                                                                     # login
+    path("register/", views.register_view, name="register"),                                                            # registrazione
+    path("check_username_availability/", views.check_username_availability, name="check_username_availability"),        # controlla che l'username sia disponibile
+    path("product/create/", views.create_product, name="create_product"),                                               # vendi
+    path('product/<int:id>/', views.product_detail, name='product_detail'),                                             # dettagli prodotto
 ]
 
 if settings.DEBUG:

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
 
 from django.shortcuts import render
 from .models import Product
@@ -23,6 +24,13 @@ def product_detail(request, id):
 def logout_view(request):
     logout(request)
     return redirect("homepage")
+
+def check_username_availability(request):
+    if request.method == 'GET':
+        username = request.GET.get("username", None)
+        print("username ricevuto: ", username)
+        exists = User.objects.filter(username=username).exists()
+        return JsonResponse({"available": not exists})
 
 def login_view(request):
 

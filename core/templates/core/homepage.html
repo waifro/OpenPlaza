@@ -3,6 +3,7 @@
 <head>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product_card.css' %}">
     <title>OpenPlaza | Il Marketplace che parla crypto</title>
 </head>
 <body>
@@ -39,59 +40,29 @@
                 </div>
             </div>
 
-            <!--
-            <div class="right">
-                {% if user.is_authenticated %}
-
-                <p>Benvenuto, {{ user.username }} </p>
-
-                <a href="{% url 'create_product' %}">Vendi</a>
-
-                <form action="{% url 'logout' %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit">Esci</button>
-                </form>
-
-                {% else %}
-                    <a href="{% url 'login' %}">Accedi</a>
-                    <a href="{% url 'register' %}">Registrati</a>
-                {% endif %}
-            </div>
-            -->
-
         </div>
 
-        <h2>Compra e vendi in libertà con le criptovalute.</h2><br>
+        <div style="text-align: center;padding-top: 2rem;">
+            <h2 style="font-size: 2.5rem;">Compra e vendi in libertà con le criptovalute.</h2>
+            <p style="font-size: 2.5rem;">Si accettano BTC, USDT (altre monete in arrivo...)</p><br>
+        </div>
 
-        <h1>Prodotti disponibili</h1>
+        <h1>Articoli disponibili</h1>
 
         <ul class="product-horizontal-list">
+
             {% for product in products %}
-            <li class="product-card">
+            <li class="product-card-container">
                 <a href="{% url 'product_detail' product.id %}">
-                    <div class="image_wrapper">
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200">
-                        <h3>{{ product.name }}</h3>
-                        <p>{{ product.price }} €</p>
-                    </div>
+
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <h3>{{ product.name }}</h3>
+                    <p>{{ product.price }} €</p>
                 </a>
             </li>
             {% endfor %}
-        </ul>
 
-        <!--
-        <ul>
-            {% for article in articles %}
-                <li>
-                    <strong>{{ article.title }}</strong> - €{{ article.price }} <br>
-                    {{ article.description|linebreaks }} <br>
-                    Venduto da: {{ article.seller.username }}
-                </li>
-            {% empty %}
-                <li>Nessun prodotto disponibile.</li>
-            {% endfor %}
         </ul>
-        -->
     </div>
 </body>
 </html>

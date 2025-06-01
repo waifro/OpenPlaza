@@ -15,9 +15,11 @@
 				document.getElementById("username-field").style.display = 'none';
 				document.getElementById('password-fields').style.display = 'block';
 				document.getElementById('error_message').style.display = 'none';
+				document.getElementById("username-available").style.display = 'none';
 			}
 
 			function editUsernameField() {
+				document.getElementById("username-available").style.display = 'block';
 				document.getElementById("username-field").style.display = 'block';
 				document.getElementById("password-fields").style.display = 'none';
 			}
@@ -36,6 +38,9 @@
 				<p style="color: red;">{{ error }}</p>
 			{% endif %}
 
+			<!-- devo ancora scegliere come mostrare gli errori, al momento lo lasciamo così -->
+			<p id="username-available"></p>
+
 			<form method="post">
 				{% csrf_token %}
 
@@ -47,7 +52,7 @@
 					<li id="username-checklist3" style="font-style: italic;">Solo lettere, numeri, trattini e underscore</li>
 					<li id="username-checklist2" style="font-style: italic;">Non può contenere spazi</li><br>
 
-					<button id="button-verified" type="button" onclick="showPasswordFields()">Continua</button>
+					<button id="button-verified" type="button" onclick="showPasswordFields()" disabled>Continua</button>
 				</div>
 
 				<div id="password-fields" style="display: none;">
@@ -56,13 +61,9 @@
 						<h3 id="username-prefilled"></h3><a href="#" onclick="editUsernameField(); return false;" style="font-style: italic;padding-left: 0.5rem;">modifica</a>
 					</div>
 
-					<input type="text" id="password1" name="password1" placeholder="Password" required><br><br>
+					<input type="text" id="password1" name="password1" placeholder="Nuova password" required><br><br>
 					<input type="text" id="password2" name="password2" placeholder="Ripeti password" required><br><br>
 
-					<!--
-					{{ form.password1.label_tag }} {{ form.password1 }} <br>
-					{{ form.password2.label_tag }} {{ form.password2 }} <br>
-					-->
 					<button type="submit">Crea Account</button>
 				</div>
 
@@ -81,10 +82,13 @@
 				const checklist1 = document.getElementById("username-checklist1");
 				const checklist2 = document.getElementById("username-checklist2");
 				const checklist3 = document.getElementById("username-checklist3");
+				const checklist4 = document.getElementById("username-available");
+				const continueBtn = document.getElementById("button-verified");
 
-				const continueBtn = document.getElementById("username-verified");
+				let timeout = null;
 
 				usernameInput.addEventListener("input", function() {
+
 					const value = usernameInput.value;
 
 					if (value.length >= 5 && value.length <= 16) {
@@ -111,14 +115,34 @@
 						checklist3.classList.remove("valid");
 					}
 
-					if (
-						checklist1.classList.contains("valid") &&
-						checklist2.classList.contains("valid") &&
-						checklist3.classList.contains("valid")
-					)
-						continueBtn.disabled = false;
-					else  continueBtn.disabled = true;
+
+					// verifichiamo che username sia disponibile
+					clearTimeout(timeout);
+					if (checklist1.classList.contains("valid") && checklist2.classList.contains("valid") && checklist3.classList.contains("valid")) {
+						timeout = setTimeout(() => {
+
+							fetch( `/check_username_availability/?username=${encodeURIComponent(usernameInput.value)} `).then(response => response.json()).then(data => {
+								if (data.available) {
+									checklist4.classList.add("valid");
+									checklist4.classList.remove("invalid");
+									checklist4.innerText = "Username disponibile";
+									continueBtn.disabled = false;
+								} else {
+									checklist4.classList.add("invalid");
+									checklist4.classList.remove("valid");
+									checklist4.innerText = "Username già in uso";
+									continueBtn.disabled = true;
+								}
+							});
+
+						}, 300); // delay per evitare troppe chiamate
+
+					} else {
+						checklist4.innerText = "";
+						continueBtn.disabled = true;
+					}
 				});
+
 			});
 	</script>
 
