@@ -1,12 +1,13 @@
 .product-card-container {
 	width: 400px;
 	height: auto;
-	background-color: #eee;
 	border: 1px solid #ccc;
 	box-sizing: border-box;
 	margin: 0 auto;
 	display: block;
 	flex-shrink: 0;
+	text-decoration: none;
+	background-color: #FFF;
 }
 
 .product-card-container img {

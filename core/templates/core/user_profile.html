@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+	<head>
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'css/user_profile/class.css' %}">
+		<link rel="stylesheet" href="{% static 'css/user_profile/product_list.css' %}">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{ user.username }} | OpenPlaza</title>
+	</head>
+
+	<body>
+
+		<div class="container">
+
+			<a href="{% url 'create_product' %}">Vendi</a><br>
+			<a href="{% url 'homepage' %}">Homepage</a><br>
+
+			<div style="justify-content: center;align-items: center;">
+
+				<div class="container-profile">
+					<img src="{% static 'images/default_user_silhouette.avif' %}" style="width: 100px; height: 100px; border-radius: 50%;" alt="Profilo">
+
+					<div class="container-profile-desc">
+						<h1>{{ user.username }}</h1>
+						<p>Data creazione: {{ user.date_joined|date:"M Y" }}</p>
+					</div>
+				</div>
+
+				<!-- lista prodotti in vendita dell'utente -->
+				{% if products %}
+					<h2 style="justify-content: center;align-items: center;">Articoli in vendita</h2>
+
+					<ul class="product-horizontal-list">
+						{% for product in products %}
+					
+							<li class="product-container">
+								<a href="{% url 'product_detail' product.id %}">
+
+                    				<img src="{{ product.images.all.0.image.url }}" alt="{{ product.name }}">
+
+                    				<div class="product-container-details">
+                    					<div class="product-container-name">{{ product.name }}</div>
+                    					<p>{{ product.price }} €</p>
+                    				</div>
+                				</a>
+							</li>
+
+						{% endfor %}
+					</ul>
+
+				{% else %}
+					<h2>Nessun articolo in vendita</h2>
+				{% endif %}
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,108 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/partials/topbar.css' %}">
+
+<div class="topbar">
+
+    <div class="topbar-header-left">
+        
+        <div class="topbar-header-left-title" onclick="window.location.href='{% url 'homepage' %}'">
+            <h1>OpenPlaza</h1>
+        </div>
+
+    </div>
+
+    <div class="topbar-header-right">
+
+        <div class="topbar-image-icon" onclick="show_search_bar()">
+            <img src="{% static 'images/search_logo.png' %}" alt="Cerca">
+        </div>
+
+        <div class="topbar-image-icon">
+            <img src="{% static 'images/cart_logo.webp' %}" alt="Carrello">
+        </div>
+
+        <div class="topbar-menu-hamburger" id="topbar-menu-hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+</div>
+
+<div id="topbar-search-container" class="topbar-search-container invalid">
+
+    <h2>Ricerca avanzata</h2>
+    <input type="text" placeholder="Cosa cerchi?" />
+    <br><br>
+    <select>
+        <option>Tutti i prodotti</option>
+        <option>Solo elettronica</option>
+        <option>Solo abbigliamento</option>
+    </select>
+    <br><br>
+    <button onclick="alert('Ricerca avviata')">Cerca</button>
+
+    <p>Ciao! Questo è il contenitore.</p>
+    <input type="text" id="search_bar" name="search_bar" placeholder="Cerca prodotti...">
+
+</div>
+
+<div id="topbar-menu-container" class="topbar-menu-container invalid">
+
+    {% if user.is_authenticated %}
+        <div onclick="window.location.href='{% url 'logout' %}'" class="topbar-menu-container-template">
+            <div class="topbar-menu-container-template-text">Esci</div>
+        </div>
+
+        <div onclick="window.location.href='{% url 'user_profile' user.username %}'" class="topbar-menu-container-template">
+            <div class="topbar-menu-container-template-text">Profilo</div>
+        </div>
+    {% else %}
+        <div onclick="window.location.href='{% url 'login' %}'" class="topbar-menu-container-template">
+            <div class="topbar-menu-container-template-text">Accedi</div>
+        </div>
+
+        <div onclick="window.location.href='{% url 'register' %}'" class="topbar-menu-container-template">
+            <div class="topbar-menu-container-template-text">Registrati</div>
+        </div>
+    {% endif %}
+
+    <div class="topbar-menu-container-template">
+        <div class="topbar-menu-container-template-text">Categorie</div>
+    </div>
+
+    <div class="topbar-menu-container-template">
+        <div class="topbar-menu-container-template-text">Aiuto e supporto</div>
+    </div>
+
+</div>
+
+<script>
+
+    function invert_display_status(f) {
+        if (f.classList.contains("invalid")) {
+            f.classList.add("valid");
+            f.classList.remove("invalid");
+        }
+        else {
+            f.classList.add("invalid");
+            f.classList.remove("valid");
+        }
+    }
+
+    const hamburger = document.getElementById('topbar-menu-hamburger');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        container = document.getElementById('topbar-menu-container');
+        invert_display_status(container);
+    });
+
+    function show_search_bar() {
+        container = document.getElementById("topbar-search-container");
+        invert_display_status(container);
+    }
+
+    </script>

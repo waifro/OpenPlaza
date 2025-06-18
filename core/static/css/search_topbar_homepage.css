@@ -1,0 +1,20 @@
+.search_container {
+	position: fixed;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* centra perfettamente */
+
+    width: 300px !important;
+	height: 200px !important;
+
+	background-color: lightblue; /* Temporaneo per test */
+    border: 51px solid #000;
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+    z-index: 999;
+    display: none; /* nascosto di default */
+}
+
+.search_container * {
+	font-family: sans-serif;
+}

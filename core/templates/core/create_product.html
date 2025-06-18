@@ -11,8 +11,22 @@
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
+
+        <label for="id_images">Carica immagini:</label>
+        <input type="file" name="images" multiple>
+
+        <button type="submit">Salva prodotto</button>
+    </form>
+
+    <!--
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <label for="id_images">Upload immagini:</label>
+        <input type="file" name="images" multiple required>
         <button type="submit">Salva</button>
     </form>
+    -->
 
     <p><a href="{% url 'homepage' %}">Torna alla Home</a></p>
 

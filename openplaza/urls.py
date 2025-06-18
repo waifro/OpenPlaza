@@ -30,6 +30,9 @@ urlpatterns = [
     path("check_username_availability/", views.check_username_availability, name="check_username_availability"),        # controlla che l'username sia disponibile
     path("product/create/", views.create_product, name="create_product"),                                               # vendi
     path('product/<int:id>/', views.product_detail, name='product_detail'),                                             # dettagli prodotto
+    path('search/', views.search_results_view, name='search_results'),                                                  # ricerca prodotti
+    path('test/', views.test_view, name="test"),
+    path('user/<str:username>/', views.user_profile_view, name="user_profile"),                                         #! Questa url deve rimanere per ultimo
 ]
 
 if settings.DEBUG:

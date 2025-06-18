@@ -1,0 +1,7 @@
+.valid {
+  display: block !important;
+}
+
+.invalid {
+  display: none !important;
+}

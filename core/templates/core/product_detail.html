@@ -1,15 +1,35 @@
 <!DOCTYPE html>
-<title>{{ product.name }} | OpenPlaza</title>
+<head>
+	{% load static  %}
+	<link rel="stylesheet" href="{% static 'css/product_detail/class.css' %}">
+	<link rel="stylesheet" href="{% static 'css/product_detail/product_detail.css' %}"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{ product.name }} | OpenPlaza</title>
+</head>
+
 
 <body>
+	<!-- non mettere niente qui -->
+	<div class="container">
+		<h1>OpenPlaza ---- top_bar</h1>
 
-	<h1>{{ product.name }}</h1>
-	<img src="{{ product.image.url }}">
-	<p>Prezzo: {{ product.price }} €</p>
-	<p>{{ product.description }}</p>
+		<div class="product-container">
+		
+			<img src="{{ product.images.all.0.image.url }}">
+			<h2>{{ product.name }}</h2>
+			<p>Prezzo: {{ product.price }} €</p>
 
-	<a href="{% url 'homepage' %}">Homepage</a>
+			<div style="display: flex; align-items: center;gap: 0.3rem;">
+				<p>Venditore:</p><a href="{% url 'login' %}">{{ product.seller.username }}</a>
+			</div>
 
+			<p>{{ product.description }}</p>
+
+		</div>
+		<a href="{% url 'homepage' %}">Homepage</a>
+
+	</div>
+	<!-- non mettere niente qui -->
 </body>
 
 </html>

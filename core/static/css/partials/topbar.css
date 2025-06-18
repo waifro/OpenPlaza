@@ -1,0 +1,140 @@
+.topbar {
+  width: 100%;
+  height: 5rem;
+  background-color: #e0e0e0;
+  color: black;
+  font-size: 2rem;
+  position: fixed;   /* rimane in alto anche scrollando */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;        /* abilita flexbox */
+  justify-content: space-between; /* spazio tra titolo e icone */
+  align-items: center; /* centrati verticalmente */
+  box-sizing: border-box; /* <-- Assicura che padding non faccia "sforare" */
+  /*padding: 0rem 1rem;       padding <verticale>rem <orrizzontale>rem */
+}
+
+.topbar-header-left {
+    align-items: center;
+    display: flex;
+
+    margin-left: 0.5rem;
+    gap: 1rem;
+}
+
+.topbar-header-left-title {
+  font-size: 1rem;
+}
+
+.topbar-header-left-title h1 {
+  margin: 0 auto;
+}
+
+.topbar-header-left p {
+    margin: 0;
+}
+
+.topbar-header-right {
+  display: grid;
+  grid-template-columns: repeat(3, 3rem);
+  align-items: center;
+  margin-right: 1rem;
+}
+
+
+
+.left h1 {
+  margin: 0;
+}
+
+.right a {
+  margin-left: 1rem;
+}
+
+.topbar-image-icon {
+  height: 100%;
+  border-radius: 50%;           /* lo rende un cerchio */
+  overflow: hidden;             /* in caso l'immagine va oltre il cerchio, viene nascosto il resto */
+}
+
+.topbar-image-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                /* mantiene l'immagine ingrandita per tutto il cerchio */
+  object-position: center;          /* centra l'immagine all’interno */
+  display: block;
+}
+
+.topbar-menu-hamburger {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translateX(30%);
+  cursor: pointer;
+}
+
+.topbar-menu-hamburger span {
+  display: block;
+  width: 100%;
+  height: 8%;
+  background-color: grey;
+  transition: all 0.2s ease;
+}
+
+/* Stato attivo: trasformazione in X */
+.topbar-menu-hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(10px, 15px);
+}
+
+.topbar-menu-hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.topbar-menu-hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(10px, -15px);
+}
+
+
+.topbar-search-container {
+  top: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding-bottom: 20px;
+  border-bottom: 2px solid grey;
+  position: fixed;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+
+
+
+
+.topbar-menu-container {
+  top: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  position: fixed;
+  border-top: 1px solid grey;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.topbar-menu-container-template {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  height: 5rem;
+  border-bottom: 1px solid grey;
+}
+
+.topbar-menu-container-template-text {
+  margin: 0 auto;
+}

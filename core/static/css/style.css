@@ -1,8 +1,22 @@
+
+/* Riabilita selezione testo e cursore nei link, input, textarea, bottoni */
+a, button, input, textarea, select, label {
+  cursor: pointer !important;      /* mano per link e bottoni */
+  user-select: text !important;   /* permette selezionare testo */
+}
+
+/* Per input e textarea in particolare */
+input, textarea {
+  cursor: text !important;         /* barra testo */
+  user-select: text !important;
+}
+
+
 body {
-  padding-top: 70px; /* aggiusta questo valore in base all’altezza della barra */
+  user-select: none !important;    /* disabilita selezione testo */
   margin: 0;
   font-family: sans-serif;
-  background: #f5f5f5;
+  background: #d3d3d3;
   font-size: 30px;
   padding-top: 115px; /* aggiusta questo valore in base all’altezza della barra */
 }
@@ -41,69 +55,14 @@ label {
   font-weight: bold;
 }
 
-.top-bar {
-  width: 100%;
-  background-color: #e0e0e0;
-  color: black;
-  font-size: 2rem;
-  align-items: center;
-  position: fixed;   /* rimane in alto anche scrollando */
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  display: flex;        /* abilita flexbox */
-  justify-content: space-between; /* spazio tra titolo e icone */
-  align-items: center; /* centrati verticalmente */
-  box-sizing: border-box; /* <-- Assicura che padding non faccia "sforare" */
-  padding: 0rem 1rem;      /* padding <verticale>rem <orrizzontale>rem */
-}
-
-.header-left {
-    align-items: center;
-    display: flex;
-    gap: 10px;
-}
-
-.header-left p {
-    margin: 0;
-}
-
-.header-right {
-    align-items: center;
-    display: flex;
-    gap: 10px;
-}
-
-.left h1 {
-  margin: 0;
-}
-
-.right a {
-  margin-left: 1rem;
-}
-
-.image_icon_top_bar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;           /* lo rende un cerchio */
-  overflow: hidden;             /* in caso l'immagine va oltre il cerchio, viene nascosto il resto */
-  border: 3px solid #999;       /* aggiunge un bordo attorno */
-}
-
-.image_icon_top_bar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;                /* mantiene l'immagine ingrandita per tutto il cerchio */
-  object-position: center;          /* centra l'immagine all’interno */
-  display: block;
-}
-
 .product-horizontal-list {
     display: flex;          /* mette priorità orrizzontale */
     overflow-x: auto;       /* permette di navigare liberamente sulla lista */
     list-style: none;       /* elimina i punti */
     gap: 10px;
     height: 600px;
+    padding: 20px 0;
+    background-color: #e9e9e9;
 }
 
 .product-card {

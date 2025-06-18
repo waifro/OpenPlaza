@@ -1,0 +1,13 @@
+body {
+	margin: 0 auto; /* resetta il margine ai lati */
+	display: flex;	/*abilita flitbox */
+	align-items: center;	/* centra il contenuto verticalmente */
+	justify-content: center;	/* centra il contenuto orrizontalmente */
+
+	font-family: sans-serif;
+}
+
+.container {
+	width: 100%;
+	max-width: 1000px;
+}

@@ -2,52 +2,25 @@
 <html>
 <head>
     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/globals.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/product_card.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenPlaza | Il Marketplace che parla crypto</title>
 </head>
 <body>
 
     <div class="container">
 
-        <div class="top-bar">
-
-            <div class="header-left">
-                <h1>OpenPlaza</h1>
-
-                {% if user.is_authenticated %}
-                    <form action="{% url 'logout' %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit">Esci</button>
-                    </form>
-                {% endif %}
-
-            </div>
-
-            <div class="header-center">
-                <!-- aggiungere una barra di ricerca -->
-            </div>
-
-            <div class="header-right">
-                <div class="image_icon_top_bar">
-                    <a href="{% url 'login' %}">
-                        <img src="{% static 'images/default_user_silhouette.avif' %}" alt="Profilo">
-                    </a>
-                </div>
-
-                <div class="image_icon_top_bar">
-                    <img src="{% static 'images/cart_default.png' %}" alt="Carrello">
-                </div>
-            </div>
-
-        </div>
-
-        <div style="text-align: center;padding-top: 2rem;">
+        {% include "core/partials/topbar.html" %}
+    
+        <div style="text-align: center;padding-top: 2rem;border-bottom: 2px solid #000">
             <h2 style="font-size: 2.5rem;">Compra e vendi in libertà con le criptovalute.</h2>
-            <p style="font-size: 2.5rem;">Si accettano BTC, USDT (altre monete in arrivo...)</p><br>
+            <img style="width: 100px; height: 100px;" src="{% static 'images/bitcoin_logo.webp' %}" alt="bitcoin_logo">
+            <img style="width: 100px; height: 100px;" src="{% static 'images/tether_logo.png' %}" alt="tether_logo">
         </div>
 
-        <h1>Articoli disponibili</h1>
+        <h2>Articoli disponibili</h2>
 
         <ul class="product-horizontal-list">
 
@@ -55,7 +28,7 @@
             <li class="product-card-container">
                 <a href="{% url 'product_detail' product.id %}">
 
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <img src="{{ product.images.all.0.image.url }}" alt="{{ product.name }}">
                     <h3>{{ product.name }}</h3>
                     <p>{{ product.price }} €</p>
                 </a>

@@ -3,11 +3,12 @@ from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
 from django.shortcuts import render
-from .models import Product
+from .models import Product, ProductImage
 
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
 from .forms import ProductForm, CustomUserCreationForm
 
 
@@ -16,6 +17,12 @@ from .forms import ProductForm, CustomUserCreationForm
 def home(request):
     products = Product.objects.all()
     return render(request, 'core/homepage.html', {'products': products})
+
+def test_view(request):
+    # prendere la prima foto del prodotto dal modello ProductImage
+    #first_image =
+
+    return render(request, 'core/test.html', {'first_image': first_image})
 
 def product_detail(request, id):
     product = get_object_or_404(Product, id=id)
@@ -28,14 +35,13 @@ def logout_view(request):
 def check_username_availability(request):
     if request.method == 'GET':
         username = request.GET.get("username", None)
-        print("username ricevuto: ", username)
         exists = User.objects.filter(username=username).exists()
         return JsonResponse({"available": not exists})
 
 def login_view(request):
 
     if request.user.is_authenticated:
-        return redirect("homepage")
+        return redirect("user_profile", username=request.user.username)
 
     error = None
 
@@ -70,14 +76,33 @@ def register_view(request):
     return render(request, "core/register.html", {"form": form})
 
 def create_product(request):
+
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
+        form = ProductForm(request.POST)
+        images = request.FILES.getlist('images')  # <-- tutte le immagini caricate
+
         if form.is_valid():
             product = form.save(commit=False)
             product.seller = request.user
             product.save()
+
+            for f in images:
+                ProductImage.objects.create(product=product, image=f)
+
             return redirect('homepage')
     else:
         form = ProductForm()
 
     return render(request, 'core/create_product.html', {'form': form})
+
+def user_profile_view(request, username):
+    user = get_object_or_404(User, username=username)
+    products = Product.objects.filter(seller=user)  # se vuoi mostrare i suoi articoli
+    return render(request, 'core/user_profile.html', {'user_profile': user, 'products': products})
+
+def search_results_view(request):
+    query = request.GET.get('q')
+    results = Product.objects.filter(
+        Q(name__icontains=query) | Q(description__icontains=query)
+    ) if query else Product.objects.none()
+    return render(request, 'search_results.html', {'products': results, 'query': query})

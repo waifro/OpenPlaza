@@ -1,11 +1,11 @@
 from django import forms
-from .models import Product
+from .models import Product, ProductImage
 from django.contrib.auth.models import User
 
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'price', 'image']
+        fields = ['name', 'description', 'category', 'price']
 
 class CustomUserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
@@ -14,9 +14,7 @@ class CustomUserCreationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username']  # solo i campi del modello
-        widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Scegli un username'}),
-        }
+        widgets = {'username': forms.TextInput(attrs={'placeholder': 'Scegli un username'})}
 
     # Metodo di pulizia del secondo campo password (non dentro Meta!)
     def clean_password2(self):
@@ -34,7 +32,7 @@ class CustomUserCreationForm(forms.ModelForm):
         password = self.cleaned_data.get("password1")
 
         if username and password and username == password:
-            raise forms.ValidationError("L'Username e passoword non possono combaciare.")
+            raise forms.ValidationError("L'Username e password non possono combaciare.")
 
         return cleaned_data
 
