@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <head>
 	{% load static  %}
+	<link rel="stylesheet" href="{% static 'css/globals.css' %}">
+	<link rel="stylesheet" href="{% static 'css/partials/topbar.css' %}">
 	<link rel="stylesheet" href="{% static 'css/product_detail/class.css' %}">
 	<link rel="stylesheet" href="{% static 'css/product_detail/product_detail.css' %}"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +12,54 @@
 
 <body>
 	<!-- non mettere niente qui -->
-	<div class="container">
-		<h1>OpenPlaza ---- top_bar</h1>
 
-		<div class="product-container">
+	{% include "core/partials/topbar.html" %}
+
+	<div class="container">
 		
-			<img src="{{ product.images.all.0.image.url }}">
+		<div class="product-container">
+			
+			<div class="product-container-img">
+				<div class="product-container-img-primary">
+					<img src="{{ product.images.all.0.image.url }}">
+				</div>
+
+				<li class="product-container-img-secondary-container">
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+					<div class="product-container-img-secondary-container-placeholder">
+					</div>
+				</li>
+			</div>
+
 			<h2>{{ product.name }}</h2>
 			<p>Prezzo: {{ product.price }} €</p>
 
