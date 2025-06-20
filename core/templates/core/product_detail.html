@@ -24,40 +24,15 @@
 					<img src="{{ product.images.all.0.image.url }}">
 				</div>
 
-				<li class="product-container-img-secondary-container">
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-					<div class="product-container-img-secondary-container-placeholder">
-					</div>
-				</li>
+				<ul class="product-container-img-secondary-container">
+					{% for img in product.images.all %}
+
+					<li class="product-container-img-secondary-container-placeholder">
+						<img src="{{ img.image.url }}" alt="{{ product.name }}">
+					</li>
+
+					{% endfor %}
+				</ul>
 			</div>
 
 			<h2>{{ product.name }}</h2>
